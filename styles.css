@@ -55,10 +55,16 @@ body {
     border: 1px solid white;
 }
 
+#stats span:hover {
+    background-color: grey;
+    cursor: default;
+}
+
 .buttons {
     margin: 0 auto 0 auto;
     padding-bottom: 25px;
 }
+
 .buttons button {
     cursor: pointer;
     padding: 7px 7px;
@@ -68,12 +74,67 @@ body {
     color: black;
 }
 
+.buttons button:hover {
+    background: grey;
+
+}
+
+.buttons button:active {
+    transform: rotatey(15deg);
+    transform: rotatex(30deg);
+    transition-duration: 80ms;
+}
+
 .text {
     color: white;
     padding: 30px 10px;
     text-align: center;
-    text-wrap:balance;
+    text-wrap: balance;
     font-size: 20px;
     line-height: 25px;
     border-top: 4px solid white;
+}
+
+/*Area for space-ship to fly around*/
+.spaceshipBack {
+    display: flex;
+    height: 100px;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow: hidden;
+}
+
+.spaceship {
+    height: 50px;
+    width: 50px;
+    background-image: url(https://preview.redd.it/yct20hubfk061.png?auto=webp&s=32226b397578b664ed794b64938ce40adf3298fe);
+    background-size: cover;
+    transform: rotate(30deg);
+    margin-left: 5%;
+    animation-name: fly-forward;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+}
+
+.spaceship:hover {
+    cursor: pointer;
+
+}
+
+/*Animation for the space-ship*/
+@keyframes fly-forward {
+    20% {
+        margin-bottom: 10px;
+    }
+
+    40% {
+        margin-left: 90%;
+
+    }
+
+    75% {
+        transform: rotate(-30deg);
+        margin-bottom: -60px;
+
+    }
 }
