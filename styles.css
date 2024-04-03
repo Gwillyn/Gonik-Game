@@ -5,12 +5,16 @@
     /*border: 1px solid white;*/
 }
 
+html {
+    background-image: url(https://wallpaperaccess.com/full/1145359.png);
+}
+
 .bold {
     font-weight: 1000;
 }
 
 body {
-    background-image: url(https://wallpaperaccess.com/full/1145359.png);
+    margin: 0 auto 0 auto;
 }
 
 #header {
@@ -136,5 +140,11 @@ body {
         transform: rotate(-30deg);
         margin-bottom: -60px;
 
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    #header {
+        font-size: 70px;
     }
 }
