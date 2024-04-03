@@ -65,6 +65,7 @@ body {
     border: 1px solid rgb(255, 255, 255);
     background: linear-gradient(#b6b6b6, rgb(105, 105, 105));
     border-radius: 10px;
+    color: black;
 }
 
 .text {
