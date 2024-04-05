@@ -46,6 +46,18 @@ body {
     background-color: black;
 }
 
+.alienStats {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.alienStats span {
+    color: green;
+    border: 1px solid green;
+}
+
 #stats {
     color: white;
     text-align: center;
@@ -67,7 +79,7 @@ body {
 
 .buttons {
     margin: 0 auto 0 auto;
-    padding-bottom: 25px;
+    padding-bottom: 10px;
 }
 
 .buttons button {
