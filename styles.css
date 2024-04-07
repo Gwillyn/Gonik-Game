@@ -216,3 +216,10 @@ body {
         font-size: 70px;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .imageDesc {
+        width: 400px;
+        height: 200px;
+    }
+}
