@@ -35,6 +35,40 @@ body {
     text-decoration: underline;
 }
 
+.nameTagBlock {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 200px;
+    margin-bottom: 200px;
+   
+}
+
+#nameTagText {
+    width: 200px;
+    text-align: center;
+    margin: 0 auto 10px auto;
+}
+
+#nameTagText:hover {
+    background: grey;
+
+}
+
+#nameTagSubmit {
+    width: 100px;
+    margin: 0 auto 0 auto;
+    padding: 5px;
+    background: linear-gradient(green, rgb(0, 59, 0));
+    border-radius: 10px;
+}
+
+#nameTagSubmit:active {
+    transform: rotatey(15deg);
+    transform: rotatex(30deg);
+    transition-duration: 80ms;
+}
+
 .game {
     display: flex;
     flex-direction: column;
@@ -110,6 +144,10 @@ body {
     font-size: 20px;
     line-height: 25px;
     border-top: 4px solid white;
+}
+
+.hide {
+    display: none;
 }
 
 /*Area for space-ship to fly around*/
