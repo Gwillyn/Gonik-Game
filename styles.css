@@ -22,7 +22,7 @@ body {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: center;
     font-size: 4.5vw;
-    margin: 10px auto 10px auto;
+    margin: 40px auto 10px auto;
     letter-spacing: 2px;
     color: white;
 }
@@ -41,13 +41,14 @@ body {
     flex-direction: column;
     margin-top: 200px;
     margin-bottom: 200px;
-   
+
 }
 
 #nameTagText {
     width: 200px;
     text-align: center;
     margin: 0 auto 10px auto;
+    padding: 5px;
 }
 
 #nameTagText:hover {
@@ -68,6 +69,17 @@ body {
     transform: rotatey(15deg);
     transform: rotatex(30deg);
     transition-duration: 80ms;
+}
+
+.imageDesc {
+    margin: 40px auto 0 auto;
+    width: 600px;
+    height: 300px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-image: url(https://i.pinimg.com/originals/bc/b4/3f/bcb43f3268d5c86d07234f320ad3fdd4.jpg);
 }
 
 .game {
@@ -137,7 +149,7 @@ body {
     transition-duration: 80ms;
 }
 
-.text {
+#text {
     color: white;
     padding: 30px 10px;
     text-align: center;
@@ -145,6 +157,10 @@ body {
     font-size: 20px;
     line-height: 25px;
     border-top: 4px solid white;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+
 }
 
 .hide {
