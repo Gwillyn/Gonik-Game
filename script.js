@@ -38,6 +38,9 @@ const creditsText = document.querySelector('#creditsText');
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector('#button2');
 const button3 = document.querySelector('#button3');
+const button4 = document.querySelector('#button4');
+const button5 = document.querySelector('#button5');
+const button6 = document.querySelector('#button6');
 const text = document.querySelector('#text');
 const alienNameText = document.querySelector('#alienNameText');
 const alienHealthText = document.querySelector('#alienHealthText');
@@ -57,12 +60,18 @@ let places = [
         "b-text": ["Phaser (50 credits)", "Rockets (150 credits)", "Deep Space"],
         "b-function": [buyPhaser, buyRockets, deepSpace],
         text: `You arrive at the space station. <br><br>Many stores are open, but you are only interested in munitions. <br><br><u>What will you buy?</u>`
+    },
+    {
+        name: "planet explore",
+        "b-text": ["Xathor", "Gokr Prime", "Jenki X"],
+        "b-function": [xathor, gokr, jenki],
+        text: `You look at the galaxy map. <br><br>There are so many planets to go to, but you're looking for a challenge. <br><br><u>Where will you go?</u>`
     }
 ];
 //button start
 button1.onclick = deepSpace;
-button1.onclick = deepSpace;
-button1.onclick = deepSpace;
+button2.onclick = deepSpace;
+button3.onclick = deepSpace;
 
 //Made this function to simplify the code. Too much writing of each individual place as individual functions so I made this.
 function update(place) {
@@ -73,6 +82,7 @@ function update(place) {
     button2.onclick = place["b-function"][1];
     button3.onclick = place["b-function"][2];
     text.innerHTML = place.text;
+    button4.classList.add('hide');
 }
 
 //Deep Space
@@ -88,13 +98,23 @@ function spaceStation() {
 }
 //Planetary Exploration
 function planetExplore() {
-    update(places[1]);
+    update(places[2]);
+    button4.classList.remove('hide');
+    button4.innerText = "Deep Space"
+    button4.onclick = deepSpace;
+    imageDesc.style.backgroundImage = "url(https://th.bing.com/th/id/OIP.Fv3z5jsHU6GghlKc5nSHiwHaEo?rs=1&pid=ImgDetMain)";
+    imageDesc.style.backgroundPositionY = "-30px";
 }
 //Close the Black Hole
 function blackHole() {
     update(places[1]);
 }
 //working on these
-function buyPhaser() { }
+function buyPhaser() {
+    alert()
+}
 function buyRockets() { }
+function gokr() { }
+function xathor() { }
+function jenki() { }
 
