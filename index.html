@@ -22,8 +22,8 @@
             onkeypress="clickPress(event)">
         <button class="nameTag" id="nameTagSubmit" type="button">Enter</button>
     </div>
-    <div class="imageDesc hide"></div>
-    <div class="game hide"> <!--Add/remove 'hide' to class for editing ease-->
+    <div class="imageDesc"></div>
+    <div class="game"> <!--Add/remove 'hide' to class for editing ease-->
         <div id="stats">
             <span class="stat">XP: <span id="xpText">0</span></span>
             <span class="stat">Health: <span id="healthText">100</span></span>
@@ -33,6 +33,9 @@
             <button id="button1">Deep Space</button>
             <button id="button2">Deep Space</button>
             <button id="button3">Deep Space</button>
+            <button id="button4" class="hide"></button>
+            <button id="button5" class="hide"></button>
+            <button id="button6" class="hide"></button>
         </div>
         <div class="alienStats">
             <span class="stat">Alien: <span id="alienNameText"></span></span>
@@ -48,7 +51,9 @@
     </div>
 
     <div class="spaceshipBack">
-        <div class="spaceship"></div>
+        <a class="spaceship" target="_blank" href="https://github.com/Gwillyn">
+            <div></div>
+        </a>
     </div>
     <script src="script.js"></script>
 </body>
