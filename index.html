@@ -9,11 +9,22 @@
 </head>
 
 <body>
+
+
+
     <div id="header">
         <h1 class="bold">Epic Adventure Quest</h1>
         <h2>In Space</h2>
     </div>
-    <div class="game">
+
+    <div class="nameDiv">
+        <form class="nameTagBlock">
+            <input class="nameTag" id="nameTagText" type="text" placeholder="Name" required>
+            <button class="nameTag" id="nameTagSubmit" type="button">Submit</button>
+        </form>
+    </div>
+
+    <div class="game hide">
         <div id="stats">
             <span class="stat">XP: <span id="xpText">0</span></span>
             <span class="stat">Health: <span id="healthText">100</span></span>
@@ -29,7 +40,7 @@
             <span class="stat">Health: <span id="alienHealthText"></span></span>
         </div>
         <div class="text">
-            Welcome -player- to Epic Adventure Quest <br>(in space)! <br><br> Your mission is to improve your space
+            Welcome <span class="player">-player-</span> to Epic Adventure Quest <br>(in space)! <br><br> Your mission is to improve your space
             arsenal and experience enough to close the black hole that threatens the galaxy. <br><br>You begin on your
             ship in deep space.<br><u>Where do you go?</u>
         </div>
