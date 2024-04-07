@@ -61,6 +61,7 @@ body {
     padding: 5px;
     background: linear-gradient(green, rgb(0, 59, 0));
     border-radius: 10px;
+    color: black;
 }
 
 #nameTagSubmit:active {
