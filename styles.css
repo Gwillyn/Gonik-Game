@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    transition-duration: 200ms;
+    transition-duration: 500ms;
     /*border: 1px solid white;*/
 }
 
@@ -80,6 +80,14 @@ body {
     border: 2px solid white;
     border-radius: 10px;
     background-image: url(https://i.pinimg.com/originals/bc/b4/3f/bcb43f3268d5c86d07234f320ad3fdd4.jpg);
+    
+}
+
+.imageDesc:hover {
+    -webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
 }
 
 .game {
