@@ -45,14 +45,16 @@ const text = document.querySelector('#text');
 const alienNameText = document.querySelector('#alienNameText');
 const alienHealthText = document.querySelector('#alienHealthText');
 const imageDesc = document.querySelector('.imageDesc');
+const alienStats = document.querySelector('.alienStats');
+
 
 
 // These are the places (locations) that will occur throughout the game
 let places = [
     {
         name: "deep space",
-        "b-text": ["Space Station", "Planetary Exploration", "Close the Black Hole"],
-        "b-function": [spaceStation, planetExplore, blackHole],
+        "b-text": ["Space Station", "Light Travel", "Close the Black Hole"],
+        "b-function": [spaceStation, lightTravel, blackHole],
         text: `You are in deep space.`
     },
     {
@@ -62,7 +64,7 @@ let places = [
         text: `You arrive at the space station. <br><br>Many stores are open, but you are only interested in munitions. <br><br><u>What will you buy?</u>`
     },
     {
-        name: "planet explore",
+        name: "light travel",
         "b-text": ["Xathor", "Gokr Prime", "Jenki X"],
         "b-function": [xathor, gokr, jenki],
         text: `You look at the galaxy map. <br><br>There are so many planets to go to, but you're looking for a challenge. <br><br><u>Where will you go?</u>`
@@ -75,6 +77,7 @@ button3.onclick = deepSpace;
 
 //Made this function to simplify the code. Too much writing of each individual place as individual functions so I made this.
 function update(place) {
+    alienStats.style.display = "none";
     button1.innerText = place["b-text"][0];
     button2.innerText = place["b-text"][1];
     button3.innerText = place["b-text"][2];
@@ -89,7 +92,7 @@ function update(place) {
 function deepSpace() {
     update(places[0]);
     imageDesc.style.backgroundImage = "url(https://wallpaperaccess.com/full/634686.jpg)";
-    imageDesc.style.backgroundPositionY = "-50px";
+    imageDesc.style.backgroundPositionY = "-40px";
 }
 //Space Station
 function spaceStation() {
@@ -97,7 +100,7 @@ function spaceStation() {
     imageDesc.style.backgroundImage = "url(https://i.pinimg.com/originals/11/e9/6e/11e96e0d427b6eb2304c2753f85744ca.jpg)";
 }
 //Planetary Exploration
-function planetExplore() {
+function lightTravel() {
     update(places[2]);
     button4.classList.remove('hide');
     button4.innerText = "Deep Space"
