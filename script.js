@@ -6,7 +6,8 @@ let player = document.querySelector('#player');
 const nameText = document.querySelector('#nameTagText');
 const game = document.querySelector('.game'); //This is the whole game window
 const nameInput = document.querySelector('.nameTagBlock');
-const header = document.querySelector('#header');
+const header2 = document.querySelector('#header2');
+const header1 = document.querySelector('#header1');
 
 
 
@@ -21,7 +22,8 @@ function nameChange() {
         game.classList.remove('hide');
         nameInput.classList.add('hide');
         imageDesc.classList.remove('hide');
-        header.classList.add('hide');
+        header2.classList.add('hide');
+        header1.style.fontSize = "70px"
     }
 
 }
@@ -42,6 +44,7 @@ const button3 = document.querySelector('#button3');
 const button4 = document.querySelector('#button4');
 const button5 = document.querySelector('#button5');
 const button6 = document.querySelector('#button6');
+const button7 = document.querySelector('#button7');
 const text = document.querySelector('#text');
 const alienNameText = document.querySelector('#alienNameText');
 const alienHealthText = document.querySelector('#alienHealthText');
@@ -97,19 +100,19 @@ let places = [
         name: "xathor",
         "b-text": ["Fight Ice Grub", "Fight Snowman", "Back to Planets"],
         "b-function": [fightIceGrub, fightSnowman, lightTravel],
-        text: `You arrive at Xathor <br><br>This planet is a cold, desolate wasteland inhabited by ice creatures<br><br><u>Will you stay and fight?</u><br><br><button id="button7">Learn More</button>`
+        text: "<span id='title'>Xathor</span>: <br><br>Average Temperature: -90°C <br><br>Hostility Level: Harmful <br><br>Human Population: 0 <br><br>4,000,000 Casualties"
     },
     {//7
         name: "gokr prime",
         "b-text": ["Fight Gross Grub", "Fight Lizard", "Back to Planets"],
         "b-function": [fightGrossGrub, fightLizard, lightTravel],
-        text: `You arrive at Gokr Prime <br><br>This planet is a warm and humid jungle inhabited by giant creatures<br><br><u>Will you stay and fight?</u><br><br><button id="button7">Learn More</button>`
+        text: "<span id='title'>Gokr Prime</span>: <br><br>Average Temperature: 30°C <br><br>Hostility Level: Dangerous <br><br>Human Population: 4,000 <br><br>20,000,000 Casualties"
     },
     {//8
         name: "jenki X",
         "b-text": ["Fight Sand Beetles", "Fight Giant Worm", "Back to Planets"],
         "b-function": [fightSandBeetle, fightWorm, lightTravel],
-        text: `You arrive at Jenki X <br><br>This planet is a hot and dry sand planet. Covered in dunes, inhabited by giant creatures<br><br><u>Will you stay and fight?</u><br><br><button id="button7">Learn More</button>`
+        text: "<span id='title'>Jenki X</span>: <br><br>Average Temperature: 50°C <br><br>Hostility Level: Hostile <br><br>Human Population: 2,000 <br><br>110,000,000 Casualties"
     }
 
 ];
@@ -132,10 +135,12 @@ function update(place) {
     button4.classList.add('hide');
     button5.classList.add('hide');
     button6.classList.add('hide');
+    button7.classList.add('hide');
     button2.classList.remove('hide');
     imageDesc.style.backgroundPositionY = "0px";
     imageDesc.style.backgroundPositionX = "0px";
     imageDesc.style.backgroundSize = "cover";
+    button7.innerText = "Learn More"
 
 }
 
@@ -182,8 +187,8 @@ function lightTravel() {
     button4.classList.remove('hide');
     button4.innerText = "Deep Space"
     button4.onclick = deepSpace;
-    imageDesc.style.backgroundImage = "url(https://th.bing.com/th/id/OIP.Fv3z5jsHU6GghlKc5nSHiwHaEo?rs=1&pid=ImgDetMain)";
-    imageDesc.style.backgroundPositionY = "-30px";
+    imageDesc.style.backgroundImage = "url(https://th.bing.com/th/id/R.9da839256ffa0bd5c614e351951f33aa?rik=d2YfhU6lazKVlA&pid=ImgRaw&r=0)";
+    imageDesc.style.backgroundPositionY = "-10px";
 }
 //Planetary Exploration - Xathor
 function xathor() {
@@ -192,7 +197,13 @@ function xathor() {
     imageDesc.style.backgroundSize = "contain";
     imageDesc.style.backgroundPositionY = "2%";
     imageDesc.style.backgroundPositionX = "50%";
-}
+    button7.classList.remove('hide');
+    button7.onclick = learnXathor;
+    function learnXathor() {
+        text.innerHTML = `You arrive at Xathor <br><br>This planet is a cold, desolate wasteland inhabited by ice creatures<br><br><u>Will you stay and fight?</u><br><br>`
+        button7.onclick = xathor;
+        button7.innerText = "Back"
+}}
 function fightIceGrub() { }
 function fightSnowman() { }
 //Planetary Exploration - Gokr 
@@ -202,7 +213,13 @@ function gokr() {
     imageDesc.style.backgroundSize = "contain";
     imageDesc.style.backgroundPositionY = "1%";
     imageDesc.style.backgroundPositionX = "52%";
-}
+    button7.classList.remove('hide');
+    button7.onclick = learnGokr;
+    function learnGokr() {
+        text.innerHTML = "You arrive at Gokr Prime <br><br>This planet is a warm and humid jungle inhabited by giant creatures<br><br><u>Will you stay and fight?</u><br><br>"
+        button7.onclick = gokr;
+        button7.innerText = "Back"
+}}
 function fightGrossGrub() { }
 function fightLizard() { }
 //Planetary Exploration - Jenki
@@ -212,7 +229,17 @@ function jenki() {
     imageDesc.style.backgroundSize = "contain";
     imageDesc.style.backgroundPositionY = "1%";
     imageDesc.style.backgroundPositionX = "50%";
+    button7.classList.remove('hide');
+    button7.onclick = learnJenki;
+    function learnJenki() {
+        text.innerHTML = "You arrive at Jenki X <br><br>This planet is a hot and dry sand planet. Covered in dunes, inhabited by giant creatures<br><br><u>Will you stay and fight?</u><br><br>"
+        button7.onclick = jenki;
+        button7.innerText = "Back"
+    }
+    
+    
 }
+
 function fightSandBeetle() { }
 function fightWorm() { }
 
@@ -221,12 +248,3 @@ function blackHole() { }
 
 
 //working on these
-
-
-
-
-
-
-
-
-
