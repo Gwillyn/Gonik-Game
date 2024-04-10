@@ -75,19 +75,20 @@ body {
     margin: 40px auto 0 auto;
     width: 600px;
     height: 300px;
-    background-size: cover;
+    background-size:cover;
     background-repeat: no-repeat;
     border: 2px solid white;
     border-radius: 10px;
     background-image: url(https://i.pinimg.com/originals/bc/b4/3f/bcb43f3268d5c86d07234f320ad3fdd4.jpg);
-    
+
+
 }
 
 .imageDesc:hover {
     -webkit-filter: grayscale(100%);
-	filter: grayscale(100%);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
+    filter: grayscale(100%);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
 }
 
 .game {
@@ -137,7 +138,7 @@ body {
     padding-bottom: 10px;
 }
 
-.buttons button {
+.buttons button, #button7 {
     cursor: pointer;
     padding: 7px 7px;
     border: 1px solid rgb(255, 255, 255);
@@ -146,12 +147,12 @@ body {
     color: black;
 }
 
-.buttons button:hover {
+.buttons button:hover, #button7:hover {
     background: grey;
 
 }
 
-.buttons button:active {
+.buttons button:active, #button7:active {
     transform: rotatey(15deg);
     transform: rotatex(30deg);
     transition-duration: 80ms;
