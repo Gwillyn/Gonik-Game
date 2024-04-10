@@ -51,47 +51,69 @@ const alienStats = document.querySelector('.alienStats');
 
 
 // These are the places (locations) that will occur throughout the game
+// It may seem like using a single array for every location is harder than splitting the up into more concise arrays, but I did not think there would be as many places as there ended up being, and didn't want to change it.
 let places = [
-    {
+    {//0
         name: "cockpit",
         "b-text": ["Deep Space", "Deep Space", "Deep Space"],
         "b-function": [deepSpace, deepSpace, deepSpace],
         text: `You are in the cockpit.`
     },
     //deep space area
-    {
+    {//1
         name: "deep space",
         "b-text": ["Cockpit", "Space Station", "Light Travel"],
         "b-function": [cockpit, spaceStation, lightTravel],
         text: `You are in deep space. <br><br>You look at the galaxy map. <br><br> <u>What do you want to do?<u>`
     },
     //Space station places 
-    {
+    {//2
         name: "space station",
         "b-text": ["Weapon Store", "Mechanic", "Deep Space"],
         "b-function": [weaponStore, mechanic, deepSpace],
         text: `You arrive at the space station. <br><br>Many stores are open, but you are only interested in munitions and ship repairs. <br><br><u>What will you buy?</u>`
     },
-    {
+    {//3
         name: "weapon store",
         "b-text": ["Phaser (50 credits)", "Rockets (150 credits)", "Space Station"],
         "b-function": [buyPhaser, buyRockets, spaceStation],
         text: `You arrive at the Weapon Store. <br><br>The clerk is quiet, but seems to know what he's doing. <br><br><u>What will you buy?</u>`
     },
-    {
+    {//4
         name: "Mechanic",
         "b-text": ["Repair Ship (100 credits)", "", "Space Station"],
         "b-function": [buyHealth, buyHealth, spaceStation],
         text: `You arrive at the Weapon Store. <br><br>A loud, dirty guy greets you<br>with a yell <br><br><u>"You want some repairs?"</u>`
     },
     //Light travel places
-    {
+
+    {//5
         name: "light travel",
         "b-text": ["Xathor", "Gokr Prime", "Jenki X"],
         "b-function": [xathor, gokr, jenki],
-        text: `There are so many planets to go to, but you're looking for a challenge. <br><br><u>Where will you go?</u>`
+        text: `There are so many planets to go to, but only these present the challenge you're looking for. <br><br><u>Where will you go?</u>`
+    },
+    {//6
+        name: "xathor",
+        "b-text": ["Fight Ice Grub", "Fight Snowman", "Back to Planets"],
+        "b-function": [fightIceGrub, fightSnowman, lightTravel],
+        text: `You arrive at Xathor <br><br>This planet is a cold, desolate wasteland inhabited by ice creatures<br><br><u>Will you stay and fight?</u><br><br><button id="button7">Learn More</button>`
+    },
+    {//7
+        name: "gokr prime",
+        "b-text": ["Fight Gross Grub", "Fight Lizard", "Back to Planets"],
+        "b-function": [fightGrossGrub, fightLizard, lightTravel],
+        text: `You arrive at Gokr Prime <br><br>This planet is a warm and humid jungle inhabited by giant creatures<br><br><u>Will you stay and fight?</u><br><br><button id="button7">Learn More</button>`
+    },
+    {//8
+        name: "jenki X",
+        "b-text": ["Fight Sand Beetles", "Fight Giant Worm", "Back to Planets"],
+        "b-function": [fightSandBeetle, fightWorm, lightTravel],
+        text: `You arrive at Jenki X <br><br>This planet is a hot and dry sand planet. Covered in dunes, inhabited by giant creatures<br><br><u>Will you stay and fight?</u><br><br><button id="button7">Learn More</button>`
     }
+
 ];
+
 //button start
 button1.onclick = deepSpace;
 button2.onclick = deepSpace;
@@ -110,7 +132,11 @@ function update(place) {
     button4.classList.add('hide');
     button5.classList.add('hide');
     button6.classList.add('hide');
-    button2.classList.remove('hide')
+    button2.classList.remove('hide');
+    imageDesc.style.backgroundPositionY = "0px";
+    imageDesc.style.backgroundPositionX = "0px";
+    imageDesc.style.backgroundSize = "cover";
+
 }
 
 //Cockpit
@@ -133,7 +159,9 @@ function deepSpace() {
 function spaceStation() {
     update(places[2]);
     imageDesc.style.backgroundImage = "url(https://i.pinimg.com/originals/11/e9/6e/11e96e0d427b6eb2304c2753f85744ca.jpg)";
+    imageDesc.style.backgroundPositionY = "-40px";
 }
+//Space Station - Weapons Store
 function weaponStore() {
     update(places[3]);
 }
@@ -141,13 +169,14 @@ function buyRockets() { }
 function buyPhaser() {
     alert()
 }
+//Space Station - Mechanic
 function mechanic() {
     update(places[4]);
     button2.classList.add('hide');
- }
- function buyHealth() { }
+}
+function buyHealth() { }
 
-//Planetary Exploration
+//Planetary Exploration - travel screen
 function lightTravel() {
     update(places[5]);
     button4.classList.remove('hide');
@@ -156,12 +185,39 @@ function lightTravel() {
     imageDesc.style.backgroundImage = "url(https://th.bing.com/th/id/OIP.Fv3z5jsHU6GghlKc5nSHiwHaEo?rs=1&pid=ImgDetMain)";
     imageDesc.style.backgroundPositionY = "-30px";
 }
-function gokr() { }
-function xathor() { }
-function jenki() { }
+//Planetary Exploration - Xathor
+function xathor() {
+    update(places[6]);
+    imageDesc.style.backgroundImage = "url(https://orig00.deviantart.net/a87e/f/2015/353/7/c/ice_planet_by_opreadorin1-d9kmqfk.jpg)";
+    imageDesc.style.backgroundSize = "contain";
+    imageDesc.style.backgroundPositionY = "2%";
+    imageDesc.style.backgroundPositionX = "50%";
+}
+function fightIceGrub() { }
+function fightSnowman() { }
+//Planetary Exploration - Gokr 
+function gokr() {
+    update(places[7]);
+    imageDesc.style.backgroundImage = "url(https://th.bing.com/th/id/OIP.IP-oATIhfW4hJsWFa0yaZQHaHX?rs=1&pid=ImgDetMain)";
+    imageDesc.style.backgroundSize = "contain";
+    imageDesc.style.backgroundPositionY = "1%";
+    imageDesc.style.backgroundPositionX = "52%";
+}
+function fightGrossGrub() { }
+function fightLizard() { }
+//Planetary Exploration - Jenki
+function jenki() {
+    update(places[8]);
+    imageDesc.style.backgroundImage = "url(https://p.turbosquid.com/ts-thumb/tc/UFs4EW/6yBX27SB/dune_e/jpg/1587122550/1920x1080/fit_q87/a6b6a0b3be0c436f0ad190e75eb73aed0028be91/dune_e.jpg)";
+    imageDesc.style.backgroundSize = "contain";
+    imageDesc.style.backgroundPositionY = "1%";
+    imageDesc.style.backgroundPositionX = "50%";
+}
+function fightSandBeetle() { }
+function fightWorm() { }
 
 //Close the Black Hole
-function blackHole() {}
+function blackHole() { }
 
 
 //working on these
