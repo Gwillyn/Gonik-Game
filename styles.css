@@ -19,20 +19,24 @@ body {
 }
 
 #header {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: merriweather;
     text-align: center;
-    font-size: 4.5vw;
+    font-size: 70px;
     margin: 40px auto 10px auto;
     letter-spacing: 2px;
     color: white;
+    
 }
 
 #header h1 {
     text-decoration: overline underline;
+    text-underline-offset: 20%;
+    
 }
 
 #header h2 {
-    text-decoration: underline;
+    font-size: 40px;
+    padding-top: 30px;
 }
 
 .nameTagBlock {
@@ -170,6 +174,16 @@ body {
     background-repeat: no-repeat;
 
 
+}
+#title {
+    font-size: 40px;
+    text-decoration: underline overline;
+    text-underline-offset: 20%;
+}
+
+#button7 {
+    width: 100px;
+    margin: 0 auto 0 auto;
 }
 
 .hide {
