@@ -4,14 +4,15 @@ const submit = document.querySelector('#nameTagSubmit');
 submit.addEventListener('click', nameChange);
 let player = document.querySelector('#player');
 const nameText = document.querySelector('#nameTagText');
-const game = document.querySelector('.game'); //This is the whole game window
+const game = document.querySelector('.gameFlex'); //This is the whole game window
 const nameInput = document.querySelector('.nameTagBlock');
-const header2 = document.querySelector('#header2');
-const header1 = document.querySelector('#header1');
+const header = document.querySelector('#header');
 
 
 
-// This hides the name input and shows the game input when filled sufficiently. Also, uses the name to refer to the player for the rest of the game.
+
+// This hides the name input and shows the game input when filled sufficiently. Also, uses the name to refer to the player for the rest of the game. This needs to be completely reworked, it's too messy and doesn't save the value of what the user inputted. 
+
 
 function nameChange() {
     if (nameText.value <= 1) {
@@ -22,10 +23,8 @@ function nameChange() {
         game.classList.remove('hide');
         nameInput.classList.add('hide');
         imageDesc.classList.remove('hide');
-        header2.classList.add('hide');
-        header1.style.fontSize = "70px"
+        header.classList.add('hide');
     }
-
 }
 
 function clickPress(event) {
@@ -33,8 +32,8 @@ function clickPress(event) {
 }
 
 let xp = 0;
-let health = 0;
-let credits = 0;
+let health = 100;
+let credits = 50;
 const xpText = document.querySelector('#xpText');
 const healthText = document.querySelector('#healthText');
 const creditsText = document.querySelector('#creditsText');
@@ -51,11 +50,13 @@ const alienHealthText = document.querySelector('#alienHealthText');
 const imageDesc = document.querySelector('.imageDesc');
 const alienStats = document.querySelector('.alienStats');
 
+const inventory = [""];
+
 
 
 // These are the places (locations) that will occur throughout the game
 // It may seem like using a single array for every location is harder than splitting the up into more concise arrays, but I did not think there would be as many places as there ended up being, and didn't want to change it.
-let places = [
+const places = [
     {//0
         name: "cockpit",
         "b-text": ["Deep Space", "Deep Space", "Deep Space"],
@@ -67,7 +68,7 @@ let places = [
         name: "deep space",
         "b-text": ["Cockpit", "Space Station", "Light Travel"],
         "b-function": [cockpit, spaceStation, lightTravel],
-        text: `You are in deep space. <br><br>You look at the galaxy map. <br><br> <u>What do you want to do?<u>`
+        text: `${nameText.value} are in deep space. <br><br>You look at the galaxy map. <br><br> <u>What do you want to do?<u>`
     },
     //Space station places 
     {//2
@@ -84,8 +85,8 @@ let places = [
     },
     {//4
         name: "Mechanic",
-        "b-text": ["Repair Ship (100 credits)", "", "Space Station"],
-        "b-function": [buyHealth, buyHealth, spaceStation],
+        "b-text": ["Minor Fixes (10 credits)", "Large Repairs (50 credits)", "Space Station"],
+        "b-function": [buyHealth, buyHealth2, spaceStation],
         text: `You arrive at the Weapon Store. <br><br>A loud, dirty guy greets you<br>with a yell <br><br><u>"You want some repairs?"</u>`
     },
     //Light travel places
@@ -171,15 +172,33 @@ function weaponStore() {
     update(places[3]);
 }
 function buyRockets() { }
-function buyPhaser() {
-    alert()
-}
+function buyPhaser() { }
 //Space Station - Mechanic
 function mechanic() {
     update(places[4]);
-    button2.classList.add('hide');
 }
-function buyHealth() { }
+function buyHealth() { //Allows player to purchase health
+    if (credits >= 10) {
+        credits -= 10
+        creditsText.innerHTML = credits
+        health += 10
+        healthText.innerHTML = health
+    }
+    else {
+        text.innerHTML = `You do not have enough credits.`
+    }
+}
+function buyHealth2() {
+    if (credits >= 50) {
+        credits -= 50
+        creditsText.innerHTML = credits
+        health += 50
+        healthText.innerHTML = health
+    }
+    else {
+        text.innerHTML = `You do not have enough credits.`
+    }
+}
 
 //Planetary Exploration - travel screen
 function lightTravel() {
@@ -203,7 +222,8 @@ function xathor() {
         text.innerHTML = `You arrive at Xathor <br><br>This planet is a cold, desolate wasteland inhabited by ice creatures<br><br><u>Will you stay and fight?</u><br><br>`
         button7.onclick = xathor;
         button7.innerText = "Back"
-}}
+    }
+}
 function fightIceGrub() { }
 function fightSnowman() { }
 //Planetary Exploration - Gokr 
@@ -219,7 +239,8 @@ function gokr() {
         text.innerHTML = "You arrive at Gokr Prime <br><br>This planet is a warm and humid jungle inhabited by giant creatures<br><br><u>Will you stay and fight?</u><br><br>"
         button7.onclick = gokr;
         button7.innerText = "Back"
-}}
+    }
+}
 function fightGrossGrub() { }
 function fightLizard() { }
 //Planetary Exploration - Jenki
@@ -236,8 +257,8 @@ function jenki() {
         button7.onclick = jenki;
         button7.innerText = "Back"
     }
-    
-    
+
+
 }
 
 function fightSandBeetle() { }
