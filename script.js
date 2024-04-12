@@ -1,361 +1,276 @@
-* {
-    margin: 0;
-    padding: 0;
-    transition-duration: 500ms;
-    
-    /* border: 1px solid white; */
-}
 
-html {
-    background-color: black;
-    background-image: url(https://wallpaperaccess.com/full/1145359.png);
-}
-
-.bold {
-    font-weight: 1000;
-}
-
-body {
-    margin: 0 auto 0 auto;
-}
-
-.header {
-    font-family: merriweather;
-    text-align: center;
-    font-size: 70px;
-    margin: 40px auto 10px auto;
-    letter-spacing: 2px;
-    color: white;
-    
-    
-
-}
-
-.header h1 {
-    text-decoration: overline underline;
-    text-underline-offset: 20%;
-    text-shadow: 2.5px 0.5px;
-
-}
-
-.header h2 {
-    font-size: 40px;
-    padding-top: 30px;
-    text-shadow: 2px 0.5px;
-}
-
-.nameTagBlock {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 200px;
-    margin-bottom: 200px;
-
-}
-
-#nameTagText {
-    width: 200px;
-    text-align: center;
-    margin: 0 auto 10px auto;
-    padding: 5px;
-}
-
-#nameTagText:hover {
-    background: grey;
-}
-
-#startButton {
-    padding: 40px;
-    text-shadow: 1px 0px;
-}
-
-a:hover {
-    cursor: pointer;
-}
-
-#nameTagSubmit {
-    width: 100px;
-    margin: 0 auto 0 auto;
-    padding: 5px;
-    background: linear-gradient(green, rgb(0, 59, 0));
-    border-radius: 10px;
-    color: black;
-}
-
-#nameTagSubmit:active {
-    transform: rotatey(15deg);
-    transform: rotatex(30deg);
-    transition-duration: 80ms;
-}
-
-.imageDesc {
-    margin: 40px auto 0 auto;
-    width: 600px;
-    height: 300px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    border: 2px solid white;
-    border-radius: 10px;
-    background-image: url(https://i.pinimg.com/originals/bc/b4/3f/bcb43f3268d5c86d07234f320ad3fdd4.jpg);
+// These variables encompass the input where you put your name to begin the game.
+const submit = document.querySelector('#nameTagSubmit');
+submit.addEventListener('click', nameChange);
+let player = document.querySelector('#player');
+let nameText = document.querySelector('#nameTagText');
+const game = document.querySelector('.gameFlex'); //This is the whole game window
+const nameInput = document.querySelector('.nameTagBlock');
+const header = document.querySelector('.header');
 
 
-}
-
-.imageDesc:hover, #rocketsImage:hover, #phaserImage:hover {
-    filter: grayscale(80%);
-    transition: .3s ease-in-out;
-}
-
-.gameFlex {
-    display: flex;
-    flex-direction: row;
-    margin-top: 20px;
-}
-
-.game {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    height: 450px;
-    margin: 0px 0 0px auto;
-    border: 4px solid white;
-    border-radius: 5px 0px 0px 5px;
-    background-color: black;
-}
-
-.gameInventory {
-    padding-top:12px;
-    width: 100px;
-    height: 438px;
-    border: 4px solid white;
-    border-left: none;
-    border-radius: 0px 5px 5px 0px;
-    background-color: black;
-    color: white;
-    text-align: center;
-    margin: 0 auto 0 0;
-    text-shadow: 1px 0px;
-}
-
-.weaponContainer {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    margin: 10px 0 0 0;
-    width: 100px;
-    height: 100%;
-}
-
-.weapon {
-    width: 60px;
-    align-self: center;
-    height: 60px;
-    border: 2px solid white;
-    border-radius: 10px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
-
-#phaserImage {
-    background-image: url(https://lh3.googleusercontent.com/drive-viewer/AKGpihZiaPotpNyd_w0jGvezKOBA7tScbowJ-DamMICyRgodzN2oQpaAVQRjkiSagQ6SFw3BTK9kgFusl1NprbZKWA_m3NcOv4WENR8=s1600-v0);
-    background-size: contain;
-}
-
-#rocketsImage {
-    background-image: url(https://lh3.googleusercontent.com/drive-viewer/AKGpihZ8MjGCMeXWCR55Mv9rwkgMMzqXUazzqFLglx_2AZ3_g8nMD7r46uz6jOuUxMsmUkmRph_XnMPSdN-YZoqWriqD_nDjH5PkJKw=s1600-rw-v1);
-    background-size: contain;
-}
-
-#inventoryTitle {
-    font-size: 20px;
-    border-radius: 10px;
-    padding: 4px;
-    border: 1px solid white;
-}
-
-.alienStats {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    margin-bottom: 10px;
-    text-shadow: 1px 0px;
-}
-
-.alienStats span {
-    color: green;
-    border: 1px solid green;
-}
-
-#stats {
-    color: white;
-    text-align: center;
-    height: 50px;
-    font-size: 20px;
-    padding-top: 25px;
-    text-shadow: 1px 0px;
-}
-
-.stat {
-    border-radius: 10px;
-    padding: 7px;
-    border: 1px solid white;
-}
-
-#stats span:hover {
-    background-color: grey;
-    cursor: default;
-}
-
-.buttons {
-    margin: 0 auto 0 auto;
-    padding-bottom: 10px;
-    
-}
-
-.buttons button,
-#button7 {
-    cursor: pointer;
-    padding: 7px 7px;
-    border: 1px solid rgb(255, 255, 255);
-    background: linear-gradient(#b6b6b6, rgb(105, 105, 105));
-    border-radius: 10px;
-    color: black;
-    text-shadow: 1px 0px;
-}
-
-.buttons button:hover,
-#button7:hover {
-    background: grey;
-
-}
-
-.buttons button:active,
-#button7:active {
-    transform: rotatey(15deg);
-    transform: rotatex(30deg);
-    transition-duration: 80ms;
-}
-
-#text {
-    color: white;
-    padding: 30px 10px;
-    text-align: center;
-    text-wrap: balance;
-    font-size: 20px;
-    line-height: 25px;
-    border-top: 4px solid white;
-    background-size: cover;
-    background-repeat: no-repeat;
-    text-shadow: grey 5px 5px 10px;
 
 
-}
+// This hides the name input and shows the game input when filled sufficiently. Also, uses the name to refer to the player for the rest of the game. This needs to be completely reworked, it's too messy and doesn't save the value of what the user inputted. 
 
-#title {
-    font-size: 40px;
-    text-decoration: underline overline;
-    text-underline-offset: 20%;
-}
 
-#button7 {
-    width: 100px;
-    margin: 0 auto 0 auto;
-}
-
-.hide {
-    display: none;
-}
-
-/*Area for space-ship to fly around*/
-.spaceshipBack {
-    display: flex;
-    height: 100px;
-    align-items: center;
-    flex-wrap: nowrap;
-    overflow: hidden;
-}
-
-.spaceship {
-    height: 50px;
-    width: 50px;
-    background-image: url(https://preview.redd.it/yct20hubfk061.png?auto=webp&s=32226b397578b664ed794b64938ce40adf3298fe);
-    background-size: cover;
-    transform: rotate(30deg);
-    margin-left: 5%;
-    animation-name: fly-forward;
-    animation-duration: 7s;
-    animation-iteration-count: infinite;
-}
-
-.spaceship:hover {
-    cursor: pointer;
-
-}
-
-/*Animation for the space-ship*/
-@keyframes fly-forward {
-    20% {
-        margin-bottom: 10px;
+function nameChange() {
+    if (nameText.value <= 1) {
+        nameText.placeholder = "You Need a Name";
     }
-
-    40% {
-        margin-left: 90%;
-
-    }
-
-    75% {
-        transform: rotate(-30deg);
-        margin-bottom: -60px;
-
+    else {
+        
+        player.innerHTML = `${nameText.value}`;
+        game.classList.remove('hide');
+        nameInput.classList.add('hide');
+        imageDesc.classList.remove('hide');
+        header.classList.add('hide');
     }
 }
 
-@media screen and (min-width: 1500px) {
-    #header {
-        font-size: 70px;
+function clickPress(event) {
+    if (event.key == "Enter") { nameChange() }
+}
+
+let xp = 0;
+let health = 100;
+let credits = 50;
+const xpText = document.querySelector('#xpText');
+const healthText = document.querySelector('#healthText');
+const creditsText = document.querySelector('#creditsText');
+const button1 = document.querySelector('#button1');
+const button2 = document.querySelector('#button2');
+const button3 = document.querySelector('#button3');
+const button4 = document.querySelector('#button4');
+const button5 = document.querySelector('#button5');
+const button6 = document.querySelector('#button6');
+const button7 = document.querySelector('#button7');
+const text = document.querySelector('#text');
+const alienNameText = document.querySelector('#alienNameText');
+const alienHealthText = document.querySelector('#alienHealthText');
+const imageDesc = document.querySelector('.imageDesc');
+const alienStats = document.querySelector('.alienStats');
+
+const inventory = [""];
+
+
+
+// These are the places (locations) that will occur throughout the game
+// It may seem like using a single array for every location is harder than splitting the up into more concise arrays, but I did not think there would be as many places as there ended up being, and didn't want to change it.
+const places = [
+    {//0
+        name: "cockpit",
+        "b-text": ["Deep Space", "Deep Space", "Deep Space"],
+        "b-function": [deepSpace, deepSpace, deepSpace],
+        text: `You are in the cockpit.`
+    },
+    //deep space area
+    {//1
+        name: "deep space",
+        "b-text": ["Cockpit", "Space Station", "Light Travel"],
+        "b-function": [cockpit, spaceStation, lightTravel],
+        text: `You are in deep space. <br><br>You look at the galaxy map. <br><br> <u>What do you want to do?<u>`
+    },
+    //Space station places 
+    {//2
+        name: "space station",
+        "b-text": ["Weapon Store", "Mechanic", "Deep Space"],
+        "b-function": [weaponStore, mechanic, deepSpace],
+        text: `You arrive at the space station. <br><br>Many stores are open, but you are only interested in munitions and ship repairs. <br><br><u>What will you buy?</u>`
+    },
+    {//3
+        name: "weapon store",
+        "b-text": ["Phaser (50 credits)", "Rockets (150 credits)", "Space Station"],
+        "b-function": [buyPhaser, buyRockets, spaceStation],
+        text: `You arrive at the Weapon Store. <br><br>The clerk is quiet, but seems to know what he's doing. <br><br><u>What will you buy?</u>`
+    },
+    {//4
+        name: "Mechanic",
+        "b-text": ["Minor Fixes (10 credits)", "Large Repairs (50 credits)", "Space Station"],
+        "b-function": [buyHealth, buyHealth2, spaceStation],
+        text: `You arrive at the Weapon Store. <br><br>A large man greets you at the door.<br>With a yell, he asks <br><br><u>"You want some repairs?"</u>`
+    },
+    //Light travel places
+
+    {//5
+        name: "light travel",
+        "b-text": ["Xathor", "Gokr Prime", "Jenki X"],
+        "b-function": [xathor, gokr, jenki],
+        text: `There are so many planets to go to, but only these present the challenge you're looking for. <br><br><u>Where will you go?</u>`
+    },
+    {//6
+        name: "xathor",
+        "b-text": ["Fight Ice Grub", "Fight Snowman", "Back to Planets"],
+        "b-function": [fightIceGrub, fightSnowman, lightTravel],
+        text: "<span id='title'>Xathor</span>: <br><br>Average Temperature: -90°C <br><br>Hostility Level: Harmful <br><br>Human Population: 0 <br><br>4,000,000 Casualties"
+    },
+    {//7
+        name: "gokr prime",
+        "b-text": ["Fight Gross Grub", "Fight Lizard", "Back to Planets"],
+        "b-function": [fightGrossGrub, fightLizard, lightTravel],
+        text: "<span id='title'>Gokr Prime</span>: <br><br>Average Temperature: 30°C <br><br>Hostility Level: Dangerous <br><br>Human Population: 4,000 <br><br>20,000,000 Casualties"
+    },
+    {//8
+        name: "jenki X",
+        "b-text": ["Fight Sand Beetles", "Fight Giant Worm", "Back to Planets"],
+        "b-function": [fightSandBeetle, fightWorm, lightTravel],
+        text: "<span id='title'>Jenki X</span>: <br><br>Average Temperature: 50°C <br><br>Hostility Level: Hostile <br><br>Human Population: 2,000 <br><br>110,000,000 Casualties"
+    }
+
+];
+
+//button start
+button1.onclick = deepSpace;
+button2.onclick = deepSpace;
+button3.onclick = deepSpace;
+
+//Made this function to simplify the code. Too much writing of each individual place as individual functions so I made this.
+function update(place) {
+    nameChange()
+    alienStats.style.display = "none";
+    button1.innerText = place["b-text"][0];
+    button2.innerText = place["b-text"][1];
+    button3.innerText = place["b-text"][2];
+    button1.onclick = place["b-function"][0];
+    button2.onclick = place["b-function"][1];
+    button3.onclick = place["b-function"][2];
+    text.innerHTML = place.text;
+    button4.classList.add('hide');
+    button5.classList.add('hide');
+    button6.classList.add('hide');
+    button7.classList.add('hide');
+    button1.classList.remove('hide');
+    button2.classList.remove('hide');
+    button3.classList.remove('hide');
+    imageDesc.style.backgroundPositionY = "0px";
+    imageDesc.style.backgroundPositionX = "0px";
+    imageDesc.style.backgroundSize = "cover";
+    button7.innerText = "Learn More"
+
+}
+
+//Cockpit
+function cockpit() {
+    update(places[0]);
+    imageDesc.style.backgroundImage = "url(https://lh3.googleusercontent.com/drive-viewer/AKGpihaJFe-lTD7fo0Db81_rD94b-mw4spZYRUHE4YcSooKBhn2fH8kk_K15XaU7dDaIys_xTMX2o1dzn8ocDsxRwHMtBYh0a3niig=s1600-rw-v1)"
+}
+
+//Deep Space
+function deepSpace() {
+    update(places[1]);
+    button4.classList.remove('hide');
+    button4.innerText = "Close Black Hole";
+    button4.onclick = blackHole;
+    imageDesc.style.backgroundImage = "url(https://wallpaperaccess.com/full/634686.jpg)";
+    imageDesc.style.backgroundPositionY = "-40px";
+}
+
+//Space Station
+function spaceStation() {
+    update(places[2]);
+    imageDesc.style.backgroundImage = "url(https://i.pinimg.com/originals/11/e9/6e/11e96e0d427b6eb2304c2753f85744ca.jpg)";
+    imageDesc.style.backgroundPositionY = "-40px";
+}
+//Space Station - Weapons Store
+function weaponStore() {
+    update(places[3]);
+}
+function buyRockets() { }
+function buyPhaser() { }
+//Space Station - Mechanic
+function mechanic() {
+    update(places[4]);
+    imageDesc.style.backgroundImage = "url(https://lh3.googleusercontent.com/drive-viewer/AKGpihZAtbBP7c7DFBEBNV-B8BfM2S70NZAxZZ8KTeiRhqeHGHW8mQkBbF4ewSZvy3iibCtvMB-UCQlqhACntpTxwWIHjU7baAkaEjE=s1600-rw-v1)"
+}
+function buyHealth() { //Allows player to purchase health
+    if (credits >= 10) {
+        credits -= 10
+        creditsText.innerHTML = credits
+        health += 10
+        healthText.innerHTML = health
+    }
+    else {
+        text.innerHTML = `You do not have enough credits.`
+    }
+}
+function buyHealth2() {
+    if (credits >= 50) {
+        credits -= 50
+        creditsText.innerHTML = credits
+        health += 50
+        healthText.innerHTML = health
+    }
+    else {
+        text.innerHTML = `You do not have enough credits.`
     }
 }
 
-@media screen and (max-width: 600px) {
-    .imageDesc {
-        width: 400px;
-        height: 180px;
-    }
-
-    .gameInventory {
-        width: 400px;
-        height: 100px;
-        position: initial;
-        margin: 0 auto 0 auto;
-        border: 4px solid white;
-        border-radius: 5px;
-        background-color: black;
-        color: white;
-        text-align: center;
-        margin-top: 5px;
-
-    }
-
-    .game {
-        margin: 0px auto 0px auto;
-        border-radius: 5px;
-    }
-
-    .gameFlex {
-        flex-direction: column;
-        margin-top: 5px;
-    }
-
-    #inventoryTitle {
-        font-size: 20px;
-        text-decoration: underline;
-    }
-    .weaponContainer {
-        flex-direction: row;
-        margin: -10px auto 0 auto;
-        width: 100%;
-    }
-    .weapon {
-        margin-left: 10px;
+//Planetary Exploration - travel screen
+function lightTravel() {
+    update(places[5]);
+    button4.classList.remove('hide');
+    button4.innerText = "Deep Space"
+    button4.onclick = deepSpace;
+    imageDesc.style.backgroundImage = "url(https://th.bing.com/th/id/R.9da839256ffa0bd5c614e351951f33aa?rik=d2YfhU6lazKVlA&pid=ImgRaw&r=0)";
+    imageDesc.style.backgroundPositionY = "-10px";
+}
+//Planetary Exploration - Xathor
+function xathor() {
+    update(places[6]);
+    imageDesc.style.backgroundImage = "url(https://orig00.deviantart.net/a87e/f/2015/353/7/c/ice_planet_by_opreadorin1-d9kmqfk.jpg)";
+    imageDesc.style.backgroundSize = "contain";
+    imageDesc.style.backgroundPositionY = "2%";
+    imageDesc.style.backgroundPositionX = "50%";
+    button7.classList.remove('hide');
+    button7.onclick = learnXathor;
+    function learnXathor() {
+        text.innerHTML = `You arrive at Xathor <br><br>This planet is a cold, desolate wasteland inhabited by ice creatures<br><br><u>Will you stay and fight?</u><br><br>`
+        button7.onclick = xathor;
+        button7.innerText = "Back"
     }
 }
+function fightIceGrub() { }
+function fightSnowman() { }
+//Planetary Exploration - Gokr 
+function gokr() {
+    update(places[7]);
+    imageDesc.style.backgroundImage = "url(https://th.bing.com/th/id/OIP.IP-oATIhfW4hJsWFa0yaZQHaHX?rs=1&pid=ImgDetMain)";
+    imageDesc.style.backgroundSize = "contain";
+    imageDesc.style.backgroundPositionY = "1%";
+    imageDesc.style.backgroundPositionX = "52%";
+    button7.classList.remove('hide');
+    button7.onclick = learnGokr;
+    function learnGokr() {
+        text.innerHTML = "You arrive at Gokr Prime <br><br>This planet is a warm and humid jungle inhabited by giant creatures<br><br><u>Will you stay and fight?</u><br><br>"
+        button7.onclick = gokr;
+        button7.innerText = "Back"
+    }
+}
+function fightGrossGrub() { }
+function fightLizard() { }
+//Planetary Exploration - Jenki
+function jenki() {
+    update(places[8]);
+    imageDesc.style.backgroundImage = "url(https://p.turbosquid.com/ts-thumb/tc/UFs4EW/6yBX27SB/dune_e/jpg/1587122550/1920x1080/fit_q87/a6b6a0b3be0c436f0ad190e75eb73aed0028be91/dune_e.jpg)";
+    imageDesc.style.backgroundSize = "contain";
+    imageDesc.style.backgroundPositionY = "1%";
+    imageDesc.style.backgroundPositionX = "50%";
+    button7.classList.remove('hide');
+    button7.onclick = learnJenki;
+    function learnJenki() {
+        text.innerHTML = "You arrive at Jenki X <br><br>This planet is a hot and dry sand planet. Covered in dunes, inhabited by giant creatures<br><br><u>Will you stay and fight?</u><br><br>"
+        button7.onclick = jenki;
+        button7.innerText = "Back"
+    }
+
+
+}
+
+function fightSandBeetle() { }
+function fightWorm() { }
+
+//Close the Black Hole
+function blackHole() { }
+
+
+//working on these
