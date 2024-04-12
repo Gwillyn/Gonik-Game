@@ -3,10 +3,10 @@
 const submit = document.querySelector('#nameTagSubmit');
 submit.addEventListener('click', nameChange);
 let player = document.querySelector('#player');
-const nameText = document.querySelector('#nameTagText');
+let nameText = document.querySelector('#nameTagText');
 const game = document.querySelector('.gameFlex'); //This is the whole game window
 const nameInput = document.querySelector('.nameTagBlock');
-const header = document.querySelector('#header');
+const header = document.querySelector('.header');
 
 
 
@@ -19,6 +19,7 @@ function nameChange() {
         nameText.placeholder = "You Need a Name";
     }
     else {
+        
         player.innerHTML = `${nameText.value}`;
         game.classList.remove('hide');
         nameInput.classList.add('hide');
@@ -68,7 +69,7 @@ const places = [
         name: "deep space",
         "b-text": ["Cockpit", "Space Station", "Light Travel"],
         "b-function": [cockpit, spaceStation, lightTravel],
-        text: `${nameText.value} are in deep space. <br><br>You look at the galaxy map. <br><br> <u>What do you want to do?<u>`
+        text: `You are in deep space. <br><br>You look at the galaxy map. <br><br> <u>What do you want to do?<u>`
     },
     //Space station places 
     {//2
@@ -87,7 +88,7 @@ const places = [
         name: "Mechanic",
         "b-text": ["Minor Fixes (10 credits)", "Large Repairs (50 credits)", "Space Station"],
         "b-function": [buyHealth, buyHealth2, spaceStation],
-        text: `You arrive at the Weapon Store. <br><br>A loud, dirty guy greets you<br>with a yell <br><br><u>"You want some repairs?"</u>`
+        text: `You arrive at the Weapon Store. <br><br>A large man greets you at the door.<br>With a yell, he asks <br><br><u>"You want some repairs?"</u>`
     },
     //Light travel places
 
@@ -125,6 +126,7 @@ button3.onclick = deepSpace;
 
 //Made this function to simplify the code. Too much writing of each individual place as individual functions so I made this.
 function update(place) {
+    nameChange()
     alienStats.style.display = "none";
     button1.innerText = place["b-text"][0];
     button2.innerText = place["b-text"][1];
@@ -137,7 +139,9 @@ function update(place) {
     button5.classList.add('hide');
     button6.classList.add('hide');
     button7.classList.add('hide');
+    button1.classList.remove('hide');
     button2.classList.remove('hide');
+    button3.classList.remove('hide');
     imageDesc.style.backgroundPositionY = "0px";
     imageDesc.style.backgroundPositionX = "0px";
     imageDesc.style.backgroundSize = "cover";
@@ -148,7 +152,7 @@ function update(place) {
 //Cockpit
 function cockpit() {
     update(places[0]);
-    imageDesc.style.backgroundImage = "url(https://i.pinimg.com/originals/bc/b4/3f/bcb43f3268d5c86d07234f320ad3fdd4.jpg)"
+    imageDesc.style.backgroundImage = "url(https://lh3.googleusercontent.com/drive-viewer/AKGpihaJFe-lTD7fo0Db81_rD94b-mw4spZYRUHE4YcSooKBhn2fH8kk_K15XaU7dDaIys_xTMX2o1dzn8ocDsxRwHMtBYh0a3niig=s1600-rw-v1)"
 }
 
 //Deep Space
@@ -176,6 +180,7 @@ function buyPhaser() { }
 //Space Station - Mechanic
 function mechanic() {
     update(places[4]);
+    imageDesc.style.backgroundImage = "url(https://lh3.googleusercontent.com/drive-viewer/AKGpihZAtbBP7c7DFBEBNV-B8BfM2S70NZAxZZ8KTeiRhqeHGHW8mQkBbF4ewSZvy3iibCtvMB-UCQlqhACntpTxwWIHjU7baAkaEjE=s1600-rw-v1)"
 }
 function buyHealth() { //Allows player to purchase health
     if (credits >= 10) {
