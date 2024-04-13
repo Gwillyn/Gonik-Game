@@ -32,10 +32,9 @@ function clickPress(event) {
     if (event.key == "Enter") { nameChange() }
 }
 
-let power = 100;
+let power = 20;
 let health = 100;
 let credits = 500;
-let currentWeapon = 0;
 let fighter;
 const powerText = document.querySelector('#powerText');
 const healthText = document.querySelector('#healthText');
@@ -63,47 +62,75 @@ const rocketsWeapon = { name: "rockets", power: 150 }
 const aliens = [
     {
         name: "Ice Slug",
-        power: 15,
+        power: 20,
         health: 200,
         text: `A very cold looking Slug approaches`,
-        attackText: `You hit that Slug where it hurts!`
+        attackText: `You hit that Slug where it hurts!`,
+        miss: `How did you miss?`,
+        creditValue: 10,
+        powerValue: 2
         
     },
     {
         name: "Snow Man",
         power: 40,
         health: 500,
-        text: `A snow man?`,
-        attackText: `Kicked that snow guy in the jingle-bells!`
+        text: `A Snow Man?`,
+        attackText: `Kicked that snow guy in the jingle-bells!`,
+        miss: `How did you miss?`,
+        creditValue: 20,
+        powerValue: 3
         
     },
     {
         name: "Gross Grub",
         power: 7,
-        health: 500,
-        text: `This grub thing is making you sick. <br>You have to kill it.`,
-        attackText: `That's gross!`
+        health: 100,
+        text: `This grub thing is making you sick. <br><br>You have to kill it.`,
+        attackText: `That's gross!`,
+        miss: `How did you miss?`,
+        creditValue: 2,
+        powerValue: 0
     },
     {
         name: "Lizard",
         power: 70,
         health: 200,
-        text: `Woah, a person-sized lizard! <br>Why does it look so familiar?`,
-        attackText: `Mark Zuckerberg?!`
+        text: `Woah, a person-sized lizard! <br><br>Why does it look so familiar?`,
+        attackText: `Mark Zuckerberg?!`,
+        miss: `How did you miss?`,
+        creditValue: 100,
+        powerValue: 10
     },
     {
         name: "Sand Beetle",
         power: 64,
         health: 500,
         text: `A large beetle emerges out of the sand.`,
-        attackText: `It's just a bug!`
+        attackText: `It's just a bug!`,
+        miss: `How did you miss?`,
+        creditValue: 200,
+        powerValue: 15
     },
     {
         name: "Giant Worm",
         power: 100,
         health: 1000,
         text: `A giant sand worm approaches after feeling your vibrations! <br><br><br><br><br> Dune much?`,
-        attackText: `You hit it! <br>But did you really hurt it?`
+        attackText: `You hit it! <br>But did you really hurt it?`,
+        miss: `How did you miss? <br><br><br><br><br><br>It's literally the biggest thing on the planet.`,
+        creditValue: 1000,
+        powerValue: 40
+    },
+    {
+        name: "Black Hole",
+        power: 50,
+        health: 8000,
+        text: `The Black Hole! <br><br>It will swallow your entire galaxy if you don't close it first.<br><br>It slowly crushes you from just being this close!<br> It may be suicide, but it must be done.`,
+        attackText: `It shrinks! <br>But only a little every hit!`,
+        miss: `How did you miss? <br><br><br><br><br><br>It's a Black Hole.`,
+        creditValue: 0,
+        powerValue: 0
     }
     
 ]
@@ -114,7 +141,7 @@ const places = [
         name: "cockpit",
         "b-text": ["Deep Space", "Deep Space", "Deep Space"],
         "b-function": [deepSpace, deepSpace, deepSpace],
-        text: `You are in the cockpit.`
+        text: `Yep... your ship looks pretty cool, arlight.`
     },
     //deep space area
     {//1
@@ -132,15 +159,15 @@ const places = [
     },
     {//3
         name: "weapon store",
-        "b-text": ["Phaser (50 credits)", "Rockets (150 credits)", "Space Station"],
+        "b-text": ["Phasers", "Rockets", "Space Station"],
         "b-function": [buyPhaser, buyRockets, spaceStation],
-        text: `You arrive at the Weapon Store. <br><br>The clerk is quiet, but seems to know what he's doing. <br><br><u>What will you buy?</u>`
+        text: `You arrive at the Weapon Store. <br><br><span id="borderText">Phasers are 600 credits</span><br><br><span id="borderText">Rocket Missiles are 1200 credits</span><br><br>The clerk is quiet, but seems to know what he's doing. <br><br><u>What will you buy?</u>`
     },
     {//4
         name: "Mechanic",
         "b-text": ["Minor Fixes", "Large Repairs", "Space Station"],
         "b-function": [buyHealth, buyHealth2, spaceStation],
-        text: `You arrive at the Weapon Store. <br><br><span id="borderText">Minor fixes are 50 credits</span><br><br><span id="borderText">Large repairs are 100 credits</span><br><br>A large man greets you at the door.<br>With a yell, he asks <br><br><u>"You want some repairs?"</u>`
+        text: `You arrive at the Weapon Store. <br><br><span id="borderText">Minor fixes are 50 credits</span><br><br><span id="borderText">Large repairs are 250 credits</span><br><br>A large man greets you at the door.<br>With a yell, he asks <br><br><u>"You want some repairs?"</u>`
     },
     //Light travel places
 
@@ -173,7 +200,26 @@ const places = [
         "b-text": ["Attack", "Dodge", "Fly Away"],
         "b-function": [attack, dodge, lightTravel],
         text: "An alien looks at you."
+    },
+    {//10
+        name: "kill alien",
+        "b-text": ["", "Back", ""],
+        "b-function": [lightTravel, lightTravel, lightTravel],
+        text: "You killed that thing!"
+    },
+    {//11
+        name: "loser",
+        "b-text": ["", "Restart", ""],
+        "b-function": [restart, restart, restart],
+        text: "You died! <br><br>How did that happen? <br><br>You let that thing kill you? <br>Why?"
+    },
+    {//12
+        name: "win condition",
+        "b-text": ["", "Restart", ""],
+        "b-function": [restart, restart, restart],
+        text: "You won! <br><br>You closed the black hole! <br><br>It did cost your life, <br>but the galaxy is saved and you go down as a legend.<br><br><br>Thanks for playing!"
     }
+
 
 ];
 
@@ -210,6 +256,8 @@ function update(place) {
 //Cockpit
 function cockpit() {
     update(places[0]);
+    button1.classList.add('hide');
+    button3.classList.add('hide');
     imageDesc.style.backgroundImage = "url(https://lh3.googleusercontent.com/drive-viewer/AKGpihaJFe-lTD7fo0Db81_rD94b-mw4spZYRUHE4YcSooKBhn2fH8kk_K15XaU7dDaIys_xTMX2o1dzn8ocDsxRwHMtBYh0a3niig=s1600-rw-v1)"
 }
 
@@ -236,16 +284,17 @@ function weaponStore() {
 let rocketsBought = true;
 function buyRockets() {
     if (rocketsBought === true) {
-        if (credits < 150) {
+        if (credits < 1200) {
             text.innerHTML = "You do not have enough credits, bud."
         } else {
-            credits -= 150;
+            credits -= 1200;
             creditsText.innerText = credits;
             power += rocketsWeapon.power;
             powerText.innerText = power;
             rocketsImage.classList.remove('hide');
+            rocketsBought = false;
         }
-        rocketsBought = false;
+        
     } else {
         text.innerText = "You already have Rockets!"
     }
@@ -253,16 +302,17 @@ function buyRockets() {
 let phasersBought = true;
 function buyPhaser() {
     if (phasersBought === true) {
-        if (credits < 50) {
-            text.innerHTML = "You do not have enough credits, bud."
+        if (credits < 600) {
+            text.innerHTML = "You do not have enough credits, buddy."
         } else {
-            credits -= 50;
+            credits -= 600;
             creditsText.innerText = credits;
             power += phasersWeapon.power;
             powerText.innerText = power;
             phasersImage.classList.remove('hide');
+            phasersBought = false;
         }
-        phasersBought = false;
+        
     } else {
         text.innerText = "You already have phasers!"
     }
@@ -273,8 +323,8 @@ function mechanic() {
     imageDesc.style.backgroundImage = "url(https://lh3.googleusercontent.com/drive-viewer/AKGpihZAtbBP7c7DFBEBNV-B8BfM2S70NZAxZZ8KTeiRhqeHGHW8mQkBbF4ewSZvy3iibCtvMB-UCQlqhACntpTxwWIHjU7baAkaEjE=s1600-rw-v1)"
 }
 function buyHealth() { //Allows player to purchase health
-    if (credits >= 10) {
-        credits -= 10
+    if (credits >= 50) {
+        credits -= 50
         creditsText.innerHTML = credits
         health += 10
         healthText.innerHTML = health
@@ -284,8 +334,8 @@ function buyHealth() { //Allows player to purchase health
     }
 }
 function buyHealth2() {
-    if (credits >= 50) {
-        credits -= 50
+    if (credits >= 250) {
+        credits -= 250
         creditsText.innerHTML = credits
         health += 50
         healthText.innerHTML = health
@@ -378,7 +428,12 @@ function fightWorm() {
 }
 
 //Close the Black Hole
-function blackHole() { }
+function blackHole() {
+    fighter = 6;
+    fight();
+    imageDesc.style.backgroundImage = "url(https://scitechdaily.com/images/MAXI-J1820070-Black-Hole.jpg)";
+    imageDesc.style.backgroundPositionY = "-30px"
+}
 
 
 //working on these
@@ -392,8 +447,82 @@ function fight() {
     text.innerHTML = aliens[fighter].text;
 }
 
-function attack() {
-    text.innerHTML = `${aliens[fighter].attackText} <br><br> You dealt __ damage`
+function alienHurt() {
+    return Math.random() > .2 || health < 20;
 }
-function dodge() {}
+
+function alienAttackValue(level) {
+    const hit = (level) - (Math.floor(Math.random() * power));
+    return hit > 0 ? hit : 0;
+}
+
+
+
+function attack() {
+    text.innerHTML = aliens[fighter].attackText;
+    health -= alienAttackValue(aliens[fighter].power);
+    let damageDealt = power + Math.floor(Math.random() * power) + 1;
+    if (alienHurt()) {
+    text.innerHTML += `<br><br> You dealt ${damageDealt} damage`;
+    alienHealth -= damageDealt;
+    
+    
+    } else {
+        text.innerHTML = aliens[fighter].miss;
+    }
+    healthText.innerText = health;
+    alienHealthText.innerText = alienHealth;
+    if (health <= 0) {
+        lose();
+    } else if (alienHealth <= 0) {
+        if(fighter === 6) {
+            win()
+        } else {
+            killAlien();
+        }
+    }
+
+}
+function dodge() {
+    text.innerHTML = `Evasive maneuvers! <br><br>You get out of the way of the ${aliens[fighter].name}'s attack!`
+}
+
+function lose() {
+    update(places[11])
+    button1.classList.add('hide');
+    button3.classList.add('hide');
+}
+
+function killAlien() {
+    credits += Math.floor(aliens[fighter].creditValue * 1.12);
+    creditsText.innerText = credits;
+    power += aliens[fighter].powerValue;
+    power.innerText = power;
+    update(places[10])
+    button1.classList.add('hide');
+    button3.classList.add('hide');
+}
+
+function restart() {
+    power = 20;
+    health = 100;
+    credits = 500;
+    rocketsImage.classList.add('hide');
+    phasersImage.classList.add('hide');
+    phasersBought = true;
+    rocketsBought = true;
+    powerText.innerText = power;
+    healthText.innerText = health;
+    creditsText.innerText = credits;
+    cockpit();
+
+}
+
+function win() {
+    update(places[12]);
+    button1.classList.add('hide');
+    button3.classList.add('hide');
+}
+
+
 
