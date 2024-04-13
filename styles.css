@@ -205,7 +205,7 @@ a:hover {
     border: 1px solid white;
 }
 
-#stats span:hover {
+#stats span:hover, #inventoryTitle:hover {
     background-color: grey;
     cursor: default;
 }
