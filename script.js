@@ -19,7 +19,7 @@ function nameChange() {
         nameText.placeholder = "You Need a Name";
     }
     else {
-        
+
         player.innerHTML = `${nameText.value}`;
         game.classList.remove('hide');
         nameInput.classList.add('hide');
@@ -32,10 +32,12 @@ function clickPress(event) {
     if (event.key == "Enter") { nameChange() }
 }
 
-let xp = 0;
+let power = 100;
 let health = 100;
-let credits = 50;
-const xpText = document.querySelector('#xpText');
+let credits = 500;
+let currentWeapon = 0;
+let fighter;
+const powerText = document.querySelector('#powerText');
 const healthText = document.querySelector('#healthText');
 const creditsText = document.querySelector('#creditsText');
 const button1 = document.querySelector('#button1');
@@ -48,13 +50,63 @@ const button7 = document.querySelector('#button7');
 const text = document.querySelector('#text');
 const alienNameText = document.querySelector('#alienNameText');
 const alienHealthText = document.querySelector('#alienHealthText');
+let alienHealth = 0;
+let alienPower = 0;
 const imageDesc = document.querySelector('.imageDesc');
 const alienStats = document.querySelector('.alienStats');
+const phasersImage = document.querySelector('#phasersImage')
+const rocketsImage = document.querySelector('#rocketsImage')
 
-const inventory = [""];
+const phasersWeapon = { name: "phasers", power: 50 }
+const rocketsWeapon = { name: "rockets", power: 150 }
 
-
-
+const aliens = [
+    {
+        name: "Ice Slug",
+        power: 15,
+        health: 200,
+        text: `A very cold looking Slug approaches`,
+        attackText: `You hit that Slug where it hurts!`
+        
+    },
+    {
+        name: "Snow Man",
+        power: 40,
+        health: 500,
+        text: `A snow man?`,
+        attackText: `Kicked that snow guy in the jingle-bells!`
+        
+    },
+    {
+        name: "Gross Grub",
+        power: 7,
+        health: 500,
+        text: `This grub thing is making you sick. <br>You have to kill it.`,
+        attackText: `That's gross!`
+    },
+    {
+        name: "Lizard",
+        power: 70,
+        health: 200,
+        text: `Woah, a person-sized lizard! <br>Why does it look so familiar?`,
+        attackText: `Mark Zuckerberg?!`
+    },
+    {
+        name: "Sand Beetle",
+        power: 64,
+        health: 500,
+        text: `A large beetle emerges out of the sand.`,
+        attackText: `It's just a bug!`
+    },
+    {
+        name: "Giant Worm",
+        power: 100,
+        health: 1000,
+        text: `A giant sand worm approaches after feeling your vibrations! <br><br><br><br><br> Dune much?`,
+        attackText: `You hit it! <br>But did you really hurt it?`
+    }
+    
+]
 // These are the places (locations) that will occur throughout the game
 // It may seem like using a single array for every location is harder than splitting the up into more concise arrays, but I did not think there would be as many places as there ended up being, and didn't want to change it.
 const places = [
@@ -86,9 +138,9 @@ const places = [
     },
     {//4
         name: "Mechanic",
-        "b-text": ["Minor Fixes (10 credits)", "Large Repairs (50 credits)", "Space Station"],
+        "b-text": ["Minor Fixes", "Large Repairs", "Space Station"],
         "b-function": [buyHealth, buyHealth2, spaceStation],
-        text: `You arrive at the Weapon Store. <br><br>A large man greets you at the door.<br>With a yell, he asks <br><br><u>"You want some repairs?"</u>`
+        text: `You arrive at the Weapon Store. <br><br><span id="borderText">Minor fixes are 50 credits</span><br><br><span id="borderText">Large repairs are 100 credits</span><br><br>A large man greets you at the door.<br>With a yell, he asks <br><br><u>"You want some repairs?"</u>`
     },
     //Light travel places
 
@@ -115,6 +167,12 @@ const places = [
         "b-text": ["Fight Sand Beetles", "Fight Giant Worm", "Back to Planets"],
         "b-function": [fightSandBeetle, fightWorm, lightTravel],
         text: "<span id='title'>Jenki X</span>: <br><br>Average Temperature: 50°C <br><br>Hostility Level: Hostile <br><br>Human Population: 2,000 <br><br>110,000,000 Casualties"
+    },
+    {//9
+        name: "fighting stage",
+        "b-text": ["Attack", "Dodge", "Fly Away"],
+        "b-function": [attack, dodge, lightTravel],
+        text: "An alien looks at you."
     }
 
 ];
@@ -145,7 +203,7 @@ function update(place) {
     imageDesc.style.backgroundPositionY = "0px";
     imageDesc.style.backgroundPositionX = "0px";
     imageDesc.style.backgroundSize = "cover";
-    button7.innerText = "Learn More"
+    button7.innerText = "Learn More";
 
 }
 
@@ -175,8 +233,40 @@ function spaceStation() {
 function weaponStore() {
     update(places[3]);
 }
-function buyRockets() { }
-function buyPhaser() { }
+let rocketsBought = true;
+function buyRockets() {
+    if (rocketsBought === true) {
+        if (credits < 150) {
+            text.innerHTML = "You do not have enough credits, bud."
+        } else {
+            credits -= 150;
+            creditsText.innerText = credits;
+            power += rocketsWeapon.power;
+            powerText.innerText = power;
+            rocketsImage.classList.remove('hide');
+        }
+        rocketsBought = false;
+    } else {
+        text.innerText = "You already have Rockets!"
+    }
+}
+let phasersBought = true;
+function buyPhaser() {
+    if (phasersBought === true) {
+        if (credits < 50) {
+            text.innerHTML = "You do not have enough credits, bud."
+        } else {
+            credits -= 50;
+            creditsText.innerText = credits;
+            power += phasersWeapon.power;
+            powerText.innerText = power;
+            phasersImage.classList.remove('hide');
+        }
+        phasersBought = false;
+    } else {
+        text.innerText = "You already have phasers!"
+    }
+}
 //Space Station - Mechanic
 function mechanic() {
     update(places[4]);
@@ -224,13 +314,19 @@ function xathor() {
     button7.classList.remove('hide');
     button7.onclick = learnXathor;
     function learnXathor() {
-        text.innerHTML = `You arrive at Xathor <br><br>This planet is a cold, desolate wasteland inhabited by ice creatures<br><br><u>Will you stay and fight?</u><br><br>`
+        text.innerHTML = `This is Xathor <br><br>This planet is a cold, desolate wasteland inhabited by ice creatures<br><br><u>Will you stay and fight?</u><br><br>`
         button7.onclick = xathor;
         button7.innerText = "Back"
     }
 }
-function fightIceGrub() { }
-function fightSnowman() { }
+function fightIceGrub() {
+    fighter = 0;
+    fight();
+}
+function fightSnowman() {
+    fighter = 1;
+    fight();
+}
 //Planetary Exploration - Gokr 
 function gokr() {
     update(places[7]);
@@ -241,13 +337,19 @@ function gokr() {
     button7.classList.remove('hide');
     button7.onclick = learnGokr;
     function learnGokr() {
-        text.innerHTML = "You arrive at Gokr Prime <br><br>This planet is a warm and humid jungle inhabited by giant creatures<br><br><u>Will you stay and fight?</u><br><br>"
+        text.innerHTML = "This is Gokr Prime <br><br>This planet is a warm and humid jungle inhabited by giant creatures<br><br><u>Will you stay and fight?</u><br><br>"
         button7.onclick = gokr;
         button7.innerText = "Back"
     }
 }
-function fightGrossGrub() { }
-function fightLizard() { }
+function fightGrossGrub() {
+    fighter = 2;
+    fight();
+}
+function fightLizard() {
+    fighter = 3;
+    fight();
+}
 //Planetary Exploration - Jenki
 function jenki() {
     update(places[8]);
@@ -258,7 +360,7 @@ function jenki() {
     button7.classList.remove('hide');
     button7.onclick = learnJenki;
     function learnJenki() {
-        text.innerHTML = "You arrive at Jenki X <br><br>This planet is a hot and dry sand planet. Covered in dunes, inhabited by giant creatures<br><br><u>Will you stay and fight?</u><br><br>"
+        text.innerHTML = "This is Jenki X <br><br>This planet is a hot and dry sand planet. Covered in dunes, inhabited by giant creatures<br><br><u>Will you stay and fight?</u><br><br>"
         button7.onclick = jenki;
         button7.innerText = "Back"
     }
@@ -266,11 +368,32 @@ function jenki() {
 
 }
 
-function fightSandBeetle() { }
-function fightWorm() { }
+function fightSandBeetle() {
+    fighter = 4;
+    fight();
+}
+function fightWorm() {
+    fighter = 5;
+    fight();
+}
 
 //Close the Black Hole
 function blackHole() { }
 
 
 //working on these
+
+function fight() {
+    update(places[9]);
+    alienStats.style.display = "flex";
+    alienNameText.innerText = aliens[fighter].name;
+    alienHealthText.innerText = aliens[fighter].health;
+    alienHealth = aliens[fighter].health;
+    text.innerHTML = aliens[fighter].text;
+}
+
+function attack() {
+    text.innerHTML = `${aliens[fighter].attackText} <br><br> You dealt __ damage`
+}
+function dodge() {}
+
