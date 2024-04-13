@@ -1,2 +1,2 @@
 **Gonik**
-Check out the deployed [site](https://epicadventurequest.netlify.app)!
+Check out the deployed [site](https://gonik.netlify.app)!
