@@ -281,6 +281,7 @@ function spaceStation() {
 function weaponStore() {
     update(places[3]);
     imageDesc.style.backgroundImage = "url(https://images.nightcafe.studio/jobs/TpYQhiX44JX3nGlbhLtp/TpYQhiX44JX3nGlbhLtp--1--354ro.jpg?tr=w-1600,c-at_max)";
+    imageDesc.style.backgroundPositionY = "-20px";
 }
 let rocketsBought = true;
 function buyRockets() {
