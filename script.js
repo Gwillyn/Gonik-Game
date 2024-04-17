@@ -280,6 +280,7 @@ function spaceStation() {
 //Space Station - Weapons Store
 function weaponStore() {
     update(places[3]);
+    imageDesc.style.backgroundImage = "url(https://images.nightcafe.studio/jobs/TpYQhiX44JX3nGlbhLtp/TpYQhiX44JX3nGlbhLtp--1--354ro.jpg?tr=w-1600,c-at_max)";
 }
 let rocketsBought = true;
 function buyRockets() {
