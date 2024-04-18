@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     transition-duration: 500ms;
+    cursor: default;
     
     /* border: 1px solid white; */
 }
@@ -60,6 +61,7 @@ body {
     text-align: center;
     margin: 0 auto 10px auto;
     padding: 5px;
+    cursor: text;
 }
 
 #nameTagText:hover {
