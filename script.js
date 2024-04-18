@@ -62,7 +62,7 @@ const rocketsWeapon = { name: "rockets", power: 150 }
 const aliens = [
     {
         name: "Ice Slug",
-        power: 13,
+        power: 11,
         health: 100,
         text: `A very cold looking Slug approaches`,
         attackText: `You hit that Slug where it hurts!`,
@@ -74,7 +74,7 @@ const aliens = [
     {
         name: "Snow Man",
         power: 40,
-        health: 500,
+        health: 300,
         text: `A Snow Man?`,
         attackText: `Kicked that snow guy in the jingle-bells!`,
         miss: `How did you miss?`,
