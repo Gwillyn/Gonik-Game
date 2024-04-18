@@ -67,7 +67,7 @@ const aliens = [
         text: `A very cold looking Slug approaches`,
         attackText: `You hit that Slug where it hurts!`,
         miss: `How did you miss?`,
-        creditValue: 15,
+        creditValue: 20,
         powerValue: 2
         
     },
@@ -78,7 +78,7 @@ const aliens = [
         text: `A Snow Man?`,
         attackText: `Kicked that snow guy in the jingle-bells!`,
         miss: `How did you miss?`,
-        creditValue: 30,
+        creditValue: 40,
         powerValue: 3
         
     },
