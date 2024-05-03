@@ -211,7 +211,7 @@ const places = [
         name: "loser",
         "b-text": ["", "Restart", ""],
         "b-function": [restart, restart, restart],
-        text: "You died! <br><br>How did that happen? <br><br>You let that thing kill you? <br>Why?"
+        text: "You died! <br><br>How did that happen? <br><br>You let that thing kill you? <br><br>Why?"
     },
     {//12
         name: "win condition",
@@ -493,6 +493,8 @@ function lose() {
     update(places[11])
     button1.classList.add('hide');
     button3.classList.add('hide');
+    imageDesc.style.backgroundImage = "url(https://scx2.b-cdn.net/gfx/news/hires/2023/scientists-observe-fla.jpg)"
+    imageDesc.style.backgroundPositionY = "-35px"
 }
 
 function killAlien() {
