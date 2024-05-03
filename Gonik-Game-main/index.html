@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="black">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="icon" href="https://cdn.vectorstock.com/i/preview-1x/56/53/pixel-planet-concept-vector-42795653.jpg"
+        type="image/x-icon">
+</head>
+
+<body>
+
+
+    <div class="imageDesc hide"></div>
+    <div class="header">
+        <h1 class="bold header">Gonik</h1>
+        <h2 class="header">The Space RPG!</h2>
+    </div>
+
+    <div class="nameTagBlock">
+        <input class="nameTag" id="nameTagText" type="text" placeholder="Name" required maxlength="9"
+            onkeypress="clickPress(event)">
+        <button class="nameTag" id="nameTagSubmit" type="button">Enter</button>
+    </div>
+    <div class="gameFlex hide">
+        <div class="game"> <!--Add/remove 'hide' to class for editing ease-->
+            <div id="stats">
+                <span class="stat">Firepower: <span id="powerText">20</span></span>
+                <span class="stat">Health: <span id="healthText">100</span></span>
+                <span class="stat">Credits: <span id="creditsText">500</span></span>
+            </div>
+            <div class="buttons">
+                <button id="button1">
+                    <span id="startButton">START</span>
+                </button>
+                <button id="button2" class="hide">--START--</button>
+                <button id="button3" class="hide">--START--</button>
+                <button id="button4" class="hide"></button>
+                <button id="button5" class="hide"></button>
+                <button id="button6" class="hide"></button>
+            </div>
+            <div class="alienStats hide">
+                <span class="stat">Alien: <span id="alienNameText"></span></span>
+                <span class="stat">Health: <span id="alienHealthText"></span></span>
+            </div>
+            <div id="text">
+                Welcome <span id="player">-player-</span> to Gonik <br>(a space RPG)! <br><br> Your mission
+                is
+                to improve your space
+                arsenal and increase your firepower so that you may close the Black Hole that threatens your galaxy.
+                <br><br>You begin on
+                your
+                ship.<br><u><a onclick="deepSpace()">Start your journey</a></u>
+            </div>
+            <button id="button7" class="hide">Learn More</button>
+
+        </div>
+        <div class="gameInventory">
+            <span id="inventoryTitle">Inventory</span>
+            <div class="weaponContainer">
+                <div id="phasersImage" class="weapon hide"></div>
+                <div id="rocketsImage" class="weapon hide"></div>
+            </div>
+        </div>
+    </div>
+    <div class="spaceshipBack">
+        <a class="spaceship" target="_blank" href="https://github.com/Gwillyn">
+            <div></div>
+        </a>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
