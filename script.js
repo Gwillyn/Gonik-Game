@@ -258,7 +258,7 @@ function cockpit() {
     update(places[0]);
     button1.classList.add('hide');
     button3.classList.add('hide');
-    imageDesc.style.backgroundImage = "url(https://lh3.googleusercontent.com/drive-viewer/AKGpihaJFe-lTD7fo0Db81_rD94b-mw4spZYRUHE4YcSooKBhn2fH8kk_K15XaU7dDaIys_xTMX2o1dzn8ocDsxRwHMtBYh0a3niig=s1600-rw-v1)"
+    imageDesc.style.backgroundImage = "url('images/cockpit.png')"
 }
 
 //Deep Space
@@ -322,7 +322,7 @@ function buyPhaser() {
 //Space Station - Mechanic
 function mechanic() {
     update(places[4]);
-    imageDesc.style.backgroundImage = "url(https://lh3.googleusercontent.com/drive-viewer/AKGpihZAtbBP7c7DFBEBNV-B8BfM2S70NZAxZZ8KTeiRhqeHGHW8mQkBbF4ewSZvy3iibCtvMB-UCQlqhACntpTxwWIHjU7baAkaEjE=s1600-rw-v1)"
+    imageDesc.style.backgroundImage = "url('images/Mechanic.png')"
 }
 function buyHealth() { //Allows player to purchase health
     if (credits >= 50) {

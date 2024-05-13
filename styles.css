@@ -161,12 +161,12 @@ a:hover {
 }
 
 #phasersImage {
-    background-image: url(https://lh3.googleusercontent.com/drive-viewer/AKGpihZiaPotpNyd_w0jGvezKOBA7tScbowJ-DamMICyRgodzN2oQpaAVQRjkiSagQ6SFw3BTK9kgFusl1NprbZKWA_m3NcOv4WENR8=s1600-v0);
+    background-image: url('images/Phasers.png');
     background-size: contain;
 }
 
 #rocketsImage {
-    background-image: url(https://lh3.googleusercontent.com/drive-viewer/AKGpihZ8MjGCMeXWCR55Mv9rwkgMMzqXUazzqFLglx_2AZ3_g8nMD7r46uz6jOuUxMsmUkmRph_XnMPSdN-YZoqWriqD_nDjH5PkJKw=s1600-rw-v1);
+    background-image: url('images/Missiles.png');
     background-size: contain;
 }
 
